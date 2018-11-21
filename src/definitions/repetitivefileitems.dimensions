@@ -1,0 +1,28 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_cs9KJ_2" name="repetitivefileitems">
+            <Bounds x="40" y="10" width="800" height="500"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9KJ_6" name="ReviewStage">
+            <Bounds x="213" y="70" width="217" height="154"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9KJ_8">
+            <Bounds x="207" y="125" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9KJ_9" name="ReviewRequest">
+            <Bounds x="270" y="111" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9KJ_12" name="JustAnotherTask">
+            <Bounds x="546" y="103" width="100" height="60"/>
+        </CMMNShape>
+        <textbox cmmnElementRef="cm_cs9KJ_14" name="Basically this case helps to determine whether the&#10; repeat rule works in combination with the creation and changing of case file items&#10;&#10;The task ReviewRequest repeats (upon completion) as long as Request.Customer[0]==&quot;Joost&quot;&#10;In the test script we complete the task multiple times, and then change the first customer to &quot;Piet&quot;, &#10;after which completion of the task should not result in another repetition of the task" parentId="cm_cs9KJ_2">
+            <Bounds x="374" y="243" width="100" height="60"/>
+        </textbox>
+        <casefileitem cmmnElementRef="cm_cs9KJ_11" name="Request" parentId="cm_cs9KJ_2" contextRef="cfi_csGlQ_0">
+            <Bounds x="119" y="116" width="25" height="40"/>
+        </casefileitem>
+        <CMMNEdge sourceCMMNElementRef="cm_cs9KJ_11" targetCMMNElementRef="cm_cs9KJ_8">
+            <waypoint x="170" y="140"/>
+        </CMMNEdge>
+    </CMMNDiagram>
+</CMMNDI>

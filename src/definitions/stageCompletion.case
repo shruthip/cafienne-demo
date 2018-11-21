@@ -1,0 +1,102 @@
+<case description="" id="stageCompletion.case" name="stageCompletion">
+    <caseFileModel>
+        <caseFileItem definitionRef="root.cfid" id="cfi_cseOt_0" multiplicity="ExactlyOne" name="Root" />
+    </caseFileModel>
+    <casePlanModel autoComplete="true" id="cm_stageCompletion.case_stageCompletion_0" name="stageCompletion">
+        <planItem definitionRef="pid_cm_cseOt_62" entryCriteriaRefs="cm_csRJ5_71" id="cm_cseOt_62" name="Stage1" />
+        <sentry id="cm_csRJ5_71">
+            <planItemOnPart id="ref_id_cm_csRJ5_70" sourceRef="cm_csRJ5_70">
+                <standardEvent>occur</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <stage autoComplete="false" id="pid_cm_cseOt_62" name="Stage1">
+            <planItem definitionRef="pid_cm_cseOt_64" entryCriteriaRefs="cm_cseOt_69" id="cm_cseOt_64" name="Task2" />
+            <sentry id="cm_cseOt_69">
+                <planItemOnPart id="ref_id_cm_cseOt_66" sourceRef="cm_cseOt_66">
+                    <standardEvent>fault</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <planItem definitionRef="pid_cm_cseOt_66" id="cm_cseOt_66" name="Task1">
+                <itemControl>
+                    <requiredRule id="cm_cseOt_66_requiredRule" name="cm_cseOt_66_requiredRule">
+                        <condition language="spel">
+                            <body>
+                                    true
+                                </body>
+                        </condition>
+                    </requiredRule>
+                </itemControl>
+            </planItem>
+        </stage>
+        <humanTask id="pid_cm_cseOt_64" isBlocking="true" name="Task2">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_cseOt_66" isBlocking="true" name="Task1">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csRJ5_70" id="cm_csRJ5_70" name="TriggerStage1" />
+        <userEvent id="pid_cm_csRJ5_70" name="TriggerStage1" />
+        <planItem definitionRef="pid_cm_csRJ5_72" entryCriteriaRefs="cm_cso85_100" id="cm_csRJ5_72" name="Stage2" />
+        <sentry id="cm_cso85_100">
+            <planItemOnPart id="ref_id_cm_cso85_99" sourceRef="cm_cso85_99">
+                <standardEvent>occur</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <stage autoComplete="false" id="pid_cm_csRJ5_72" name="Stage2">
+            <planningTable id="pt_cm_10">
+                <discretionaryItem definitionRef="pid_cm_csrtZ_75" id="cm_csrtZ_75" name="Task4" />
+            </planningTable>
+            <planItem definitionRef="pid_cm_csrtZ_73" id="cm_csrtZ_73" name="Task3" />
+        </stage>
+        <humanTask id="pid_cm_csrtZ_73" isBlocking="true" name="Task3">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_csrtZ_75" isBlocking="true" name="Task4">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_cso85_99" id="cm_cso85_99" name="TriggerStage2" />
+        <userEvent id="pid_cm_cso85_99" name="TriggerStage2" />
+        <planItem definitionRef="pid_cm_cso85_101" entryCriteriaRefs="cm_csXD7_109" id="cm_cso85_101" name="Stage3" />
+        <sentry id="cm_csXD7_109">
+            <planItemOnPart id="ref_id_cm_csXD7_108" sourceRef="cm_csXD7_108">
+                <standardEvent>occur</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <stage autoComplete="true" id="pid_cm_cso85_101" name="Stage3">
+            <planningTable id="pt_cm_102">
+                <discretionaryItem definitionRef="pid_cm_cso85_105" id="cm_cso85_105" name="Task6" />
+            </planningTable>
+            <planItem definitionRef="pid_cm_cso85_103" id="cm_cso85_103" name="Task5" />
+        </stage>
+        <humanTask id="pid_cm_cso85_103" isBlocking="true" name="Task5">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_cso85_105" isBlocking="true" name="Task6">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csXD7_108" id="cm_csXD7_108" name="TriggerStage3" />
+        <userEvent id="pid_cm_csXD7_108" name="TriggerStage3" />
+    </casePlanModel>
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}</cafienne:start-case-model>
+    </extensionElements>
+</case>

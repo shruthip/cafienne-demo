@@ -1,0 +1,6 @@
+<humantask>
+    <cafienne:implementation
+        name="ManagerTask" description="ManagerTask" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <task-model></task-model>
+    </cafienne:implementation>
+</humantask>

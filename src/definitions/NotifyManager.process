@@ -1,0 +1,19 @@
+<process name="NotifyManager" description="NotifyManager">
+    <extensionElements>
+        <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.instance.process.smtp.SMTPCallDefinition">
+            <smtp-server>mailcatcher</smtp-server>
+            <smtp-port>1025</smtp-port>
+            <subject>Registration </subject>
+            <mail-body type="text/html">
+                <![CDATA[
+    <html><head><title></title></head><body>Registration is completed </body></html>
+]]>
+            </mail-body>
+            <from>travelrequest@email.org</from>
+            <reply-to>noreply@email.org</reply-to>
+            <to>
+                <address name="${toName}">${toAddress}</address>
+            </to>
+        </cafienne:implementation>
+    </extensionElements>
+</process>

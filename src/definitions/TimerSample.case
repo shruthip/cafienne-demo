@@ -1,0 +1,64 @@
+<case id="TimerSample.case" name="TimerSample" description="TimerSample" guid="_QJXxL">
+    <caseFileModel>
+        <caseFileItem id="_QJXxL_11" name="Input" multiplicity="ExactlyOne" definitionRef="input.cfid"/>
+    </caseFileModel>
+    <casePlanModel id="cm__QJXxL_0" name="TimerSample" autoComplete="true">
+        <planItem id="pi__QJXxL_0" name="Stage_0" definitionRef="_QJXxL_0" exitCriteriaRefs="crit__QJXxL_0"/>
+        <planItem id="pi__QJXxL_5" name="Stage_1" definitionRef="_QJXxL_5" exitCriteriaRefs="crit__QJXxL_1"/>
+        <sentry id="crit__QJXxL_1" name="Sentry_1">
+            <planItemOnPart id="_QJXxL_16" name="PlanItemOnPart_1" sourceRef="pi_ht__QJXxL_0">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <sentry id="crit__QJXxL_0" name="Sentry_0">
+            <planItemOnPart id="_QJXxL_13" name="PlanItemOnPart_0" sourceRef="pi_ht__QJXxL_1">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <humanTask id="ht__QJXxL_1" name="Manager Task" isBlocking="true">
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="ManagerTask.humantask"/>
+            </extensionElements>
+        </humanTask>
+        <humanTask id="ht__QJXxL_0" name="Employee Task" isBlocking="true">
+            <inputs id="_QJXxL_8" name="Input" bindingRef="_QJXxL_11"/>
+            <outputs id="_QJXxL_14" name="status" bindingRef="_QJXxL_11"/>
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="EmployeeTask.humantask">
+                    <parameterMapping id="_QJXxL_10" sourceRef="_QJXxL_8" targetRef="_Pn7Y_Input"/>
+                    <parameterMapping id="_QJXxL_15" sourceRef="_Cds7_status" targetRef="_QJXxL_14"/>
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+        <processTask id="pt__QJXxL_0" name="NotifyManager" isBlocking="true" processRef="NotifyManager.process"/>
+        <timerEvent id="tmr__QJXxL_0" name="After 20 seconds">
+            <timerExpression id="_QJXxL_9" language="spel">
+                <body>
+                    <![CDATA[PT20S]]>
+                </body>
+            </timerExpression>
+            <planItemStartTrigger id="_QJXxL_4" name="PlanItemStartTrigger_0" sourceRef="pi_ht__QJXxL_0">
+                <standardEvent>complete</standardEvent>
+            </planItemStartTrigger>
+        </timerEvent>
+        <stage id="_QJXxL_0" name="Stage_0" autoComplete="true">
+            <planItem id="pi_ht__QJXxL_0" name="Employee Task" definitionRef="ht__QJXxL_0"/>
+        </stage>
+        <stage id="_QJXxL_5" name="Stage_1" autoComplete="true">
+            <planItem id="pi_tmr__QJXxL_0" name="After 20 seconds" definitionRef="tmr__QJXxL_0"/>
+            <planItem id="pi_pt__QJXxL_0" name="NotifyManager" definitionRef="pt__QJXxL_0" entryCriteriaRefs="crit__QJXxL_2"/>
+            <planItem id="pi_ht__QJXxL_1" name="Manager Task" definitionRef="ht__QJXxL_1" entryCriteriaRefs="crit__QJXxL_3"/>
+            <sentry id="crit__QJXxL_2" name="Sentry_2">
+                <planItemOnPart id="_QJXxL_17" name="PlanItemOnPart_2" sourceRef="pi_tmr__QJXxL_0">
+                    <standardEvent>occur</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <sentry id="crit__QJXxL_3" name="Sentry_3">
+                <planItemOnPart id="_QJXxL_18" name="PlanItemOnPart_3" sourceRef="pi_tmr__QJXxL_0">
+                    <standardEvent>occur</standardEvent>
+                </planItemOnPart>
+            </sentry>
+        </stage>
+    </casePlanModel>
+    <caseRoles id="_QJXxL_12" name="BSS" description="Employee"/>
+</case>

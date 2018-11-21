@@ -1,0 +1,34 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_0" name="casefile/testcontext">
+            <Bounds x="10" y="9" width="807" height="757"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_143" name="Trigger.TaskWithContainer">
+            <Bounds x="338" y="147" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_144" name="TaskWithContainer">
+            <Bounds x="518" y="135" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_147" name="Trigger.TaskWithChild">
+            <Bounds x="343" y="258" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_148" name="TaskWithChild">
+            <Bounds x="515" y="252" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_146">
+            <Bounds x="512" y="154" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_163">
+            <Bounds x="509" y="269" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_casefile/testcontext.case_141" name="Task.AddChild">
+            <Bounds x="87" y="107" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="cm_casefile/testcontext.case_147" targetCMMNElementRef="cm_casefile/testcontext.case_163"/>
+        <CMMNEdge sourceCMMNElementRef="cm_casefile/testcontext.case_143" targetCMMNElementRef="cm_casefile/testcontext.case_146"/>
+    </CMMNDiagram>
+    <validation>
+        <hiddennotices/>
+        <hiddenproblems/>
+    </validation>
+</CMMNDI>

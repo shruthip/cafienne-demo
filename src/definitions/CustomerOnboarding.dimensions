@@ -1,0 +1,23 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm__GbM7X_0" name="CustomerOnboarding">
+            <Bounds x="30" y="20" width="839" height="744"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi__GbM7X_0" name="Account Creation">
+            <Bounds x="270" y="140" width="420" height="140"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi_ht__GbM7X_0" name="Review Customer Data">
+            <Bounds x="430" y="180" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi__GbM7X_5" name="Send Emails">
+            <Bounds x="260" y="410" width="470" height="210"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi_pt__GbM7X_0" name="Notify User">
+            <Bounds x="400" y="450" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="crit__GbM7X_0" name="Sentry_0">
+            <Bounds x="484" y="400" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="crit__GbM7X_0" targetCMMNElementRef="pi__GbM7X_0"/>
+    </CMMNDiagram>
+</CMMNDI>

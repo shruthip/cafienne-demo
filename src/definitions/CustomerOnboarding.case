@@ -1,0 +1,55 @@
+<case id="CustomerOnboarding.case" name="CustomerOnboarding" guid="_GbM7X">
+    <caseFileModel>
+        <caseFileItem id="_GbM7X_19" name="CustomerOnboarding" multiplicity="ExactlyOne" definitionRef="customeronboarding.cfid">
+            <children>
+                <caseFileItem id="_GbM7X_21" name="AccountDetails" multiplicity="ExactlyOne" definitionRef="accountdetails.cfid">
+                    <children>
+                        <caseFileItem id="_GbM7X_22" name="BankEmail" multiplicity="ExactlyOne" definitionRef="bankemail.cfid"/>
+                        <caseFileItem id="_GbM7X_23" name="BankName" multiplicity="ExactlyOne" definitionRef="bankname.cfid"/>
+                        <caseFileItem id="_GbM7X_24" name="ContactName" multiplicity="ExactlyOne" definitionRef="contactname.cfid"/>
+                        <caseFileItem id="_GbM7X_25" name="ReferenceNumber" multiplicity="ExactlyOne" definitionRef="referencenumber.cfid"/>
+                    </children>
+                </caseFileItem>
+                <caseFileItem id="_GbM7X_26" name="Members" multiplicity="ExactlyOne" definitionRef="members.cfid">
+                    <children>
+                        <caseFileItem id="_GbM7X_27" name="MemberEmail" multiplicity="ZeroOrMore" definitionRef="memberemail_1.cfid"/>
+                    </children>
+                </caseFileItem>
+            </children>
+        </caseFileItem>
+    </caseFileModel>
+    <casePlanModel id="cm__GbM7X_0" name="CustomerOnboarding" autoComplete="true">
+        <planItem id="pi__GbM7X_0" name="Account Creation" definitionRef="_GbM7X_0"/>
+        <planItem id="pi__GbM7X_5" name="Send Emails" definitionRef="_GbM7X_5" entryCriteriaRefs="crit__GbM7X_0"/>
+        <sentry id="crit__GbM7X_0" name="Sentry_0">
+            <planItemOnPart id="_GbM7X_8" name="PlanItemOnPart_0" sourceRef="pi__GbM7X_0">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <humanTask id="ht__GbM7X_0" name="Review Customer Data" isBlocking="true">
+            <inputs id="_GbM7X_29" name="CustomerOnboarding" bindingRef="_GbM7X_19"/>
+            <outputs id="_GbM7X_11" name="CustomerOnboarding" bindingRef="_GbM7X_19"/>
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="CreateAccount.humantask">
+                    <parameterMapping id="_GbM7X_7" sourceRef="_cBX7_Members" targetRef="_GbM7X_11"/>
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+        <processTask id="pt__GbM7X_0" name="Notify User" isBlocking="true" processRef="NotifyUsers.process">
+            <inputs id="_GbM7X_6" name="CustomerOnboarding" bindingRef="_GbM7X_19"/>
+            <parameterMapping id="_GbM7X_13" sourceRef="_GbM7X_6" targetRef="_grLY_Members">
+                <transformation id="_GbM7X_16" name="Expression_0" language="spel">
+                    <body>
+                        <![CDATA[CustomerOnboarding.Members.MemberEmail[0].Email]]>
+                    </body>
+                </transformation>
+            </parameterMapping>
+        </processTask>
+        <stage id="_GbM7X_0" name="Account Creation" autoComplete="true">
+            <planItem id="pi_ht__GbM7X_0" name="Review Customer Data" definitionRef="ht__GbM7X_0"/>
+        </stage>
+        <stage id="_GbM7X_5" name="Send Emails" autoComplete="true">
+            <planItem id="pi_pt__GbM7X_0" name="Notify User" definitionRef="pt__GbM7X_0"/>
+        </stage>
+    </casePlanModel>
+</case>

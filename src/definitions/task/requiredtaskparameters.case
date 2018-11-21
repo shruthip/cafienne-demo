@@ -1,0 +1,99 @@
+<case description="" id="task/requiredtaskparameters.case" name="RequiredTaskParameters">
+    <caseFileModel>
+        <caseFileItem definitionRef="root.cfid" id="cfi_csNY8_0" multiplicity="ExactlyOne" name="Root" />
+    </caseFileModel>
+    <casePlanModel id="cm_RequiredTaskParameters.case_RequiredTaskParameters_0" name="RequiredTaskParameters">
+        <planItem definitionRef="pid_cm_cssni_41" id="cm_cssni_41" name="TaskRequiredOutput" />
+        <humanTask id="pid_cm_cssni_41" isBlocking="true" name="TaskRequiredOutput">
+            <inputs id="_TV6Mb" name="x" />
+            <outputs id="_6xePv" name="Result">
+                <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                    <cafienne:implementation required="true" xmlns:cafienne="org.cafienne" />
+                </extensionElements>
+            </outputs>
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="task/simplehumantask.humantask" xmlns:cafienne="org.cafienne">
+                    <parameterMapping id="_w75qc" sourceRef="_TV6Mb" targetRef="_bpa7_Assignee">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.currentUserContext.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="_6oZPT" sourceRef="_SkQG_Result" targetRef="_6xePv" />
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csNY8_47" id="cm_csNY8_47" name="TaskRequiredOutputWithBinding" />
+        <humanTask id="pid_cm_csNY8_47" isBlocking="true" name="TaskRequiredOutputWithBinding">
+            <inputs id="_XHL7D" name="y" />
+            <outputs bindingRef="cfi_csNY8_0" id="_epnJX" name="Result">
+                <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                    <cafienne:implementation required="true" xmlns:cafienne="org.cafienne" />
+                </extensionElements>
+            </outputs>
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="task/simplehumantask.humantask" xmlns:cafienne="org.cafienne">
+                    <parameterMapping id="_i1JKn" sourceRef="_XHL7D" targetRef="_bpa7_Assignee">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.currentUserContext.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="_9RcDI" sourceRef="_SkQG_Result" targetRef="_epnJX" />
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csNY8_49" id="cm_csNY8_49" name="TaskWithOutputNotRequired" />
+        <humanTask id="pid_cm_csNY8_49" isBlocking="true" name="TaskWithOutputNotRequired">
+            <inputs id="_AsW9q" name="z" />
+            <outputs id="_VsVwA" name="Result" />
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="task/simplehumantask.humantask" xmlns:cafienne="org.cafienne">
+                    <parameterMapping id="_2ufIf" sourceRef="_AsW9q" targetRef="_bpa7_Assignee">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.currentUserContext.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="_bW3g9" sourceRef="_SkQG_Result" targetRef="_VsVwA" />
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csa4I_58" id="cm_csa4I_58" name="TaskWithOutputNotRequiredAndBinding" />
+        <humanTask id="pid_cm_csa4I_58" isBlocking="true" name="TaskWithOutputNotRequiredAndBinding">
+            <inputs id="_hthm8" name="Assignee" />
+            <outputs bindingRef="cfi_csNY8_0" id="_75v4Z" name="Result" />
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="task/simplehumantask.humantask" xmlns:cafienne="org.cafienne">
+                    <parameterMapping id="_nNaJ0" sourceRef="_hthm8" targetRef="_bpa7_Assignee">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.currentUserContext.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="_1jW2A" sourceRef="_SkQG_Result" targetRef="_75v4Z">
+                        <transformation language="spel">
+                            <body>
+                                    Result.Outcome * 2
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+    </casePlanModel>
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}</cafienne:start-case-model>
+    </extensionElements>
+</case>

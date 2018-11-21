@@ -1,0 +1,24 @@
+<humantask>
+    <cafienne:implementation xmlns:cafienne="org.cafienne" name="EmployeeTask" description="EmployeeTask" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <output id="_Cds7_status" name="status"/>
+        <input id="_Pn7Y_Input" name="Input"/>
+        <task-model>{
+    "schema":{
+        "title": "Input",
+        "type": "object",
+        "properties":{
+          "Input":{
+            "title": "Input",
+            "type": "object",
+            "properties":{
+              "status":{
+                "type": "string",
+                "title": "Sample"
+              }
+            }
+          }
+        }
+    }
+}</task-model>
+    </cafienne:implementation>
+</humantask>

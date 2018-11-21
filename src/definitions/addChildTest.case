@@ -1,0 +1,33 @@
+<case id="addChildTest.case" name="addChildTest" description="test for addChild event">
+    <caseFileModel>
+        <caseFileItem id="cfi_addChildTest.case_2" name="test" multiplicity="ZeroOrOne" definitionRef="root.cfid">
+            <children>
+                <caseFileItem id="cfi_addChildTest.case_3" name="testChild" multiplicity="ExactlyOne" definitionRef="testchild.cfid"/>
+            </children>
+        </caseFileItem>
+    </caseFileModel>
+    <casePlanModel id="cm_addChildTest.case_0" name="addChildTest">
+        <planItem id="cm_addChildTest.case_197" name="Task_2" definitionRef="pid_cm_addChildTest.case_197" entryCriteriaRefs="cm_addChildTest.case_199"/>
+        <sentry id="cm_addChildTest.case_199">
+            <caseFileItemOnPart sourceRef="cfi_addChildTest.case_2">
+                <standardEvent>addChild</standardEvent>
+            </caseFileItemOnPart>
+        </sentry>
+        <humanTask id="pid_cm_addChildTest.case_197" name="Task_2" isBlocking="true">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition"/>
+            </extensionElements>
+        </humanTask>
+    </casePlanModel>
+    <output id="_uKIcG_outCPs_0" name=""/>
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}</cafienne:start-case-model>
+    </extensionElements>
+</case>

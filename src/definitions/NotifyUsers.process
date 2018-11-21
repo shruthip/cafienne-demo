@@ -1,0 +1,20 @@
+<process name="NotifyUsers" description="">
+    <input id="_grLY_Members" name="member"/>
+    <extensionElements>
+        <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.instance.process.smtp.SMTPCallDefinition">
+            <smtp-server>mailcatcher</smtp-server>
+            <smtp-port>1025</smtp-port>
+            <subject>Registration </subject>
+            <mail-body type="text/html">
+                <![CDATA[
+    <html><head><title></title></head><body> You have been sucessfully registered to Vision Planner ${member} </body></html>
+]]>
+            </mail-body>
+            <from>travelrequest@email.org</from>
+            <reply-to>noreply@email.org</reply-to>
+            <to>
+                <address name="${member}">${member}</address>
+            </to>
+        </cafienne:implementation>
+    </extensionElements>
+</process>

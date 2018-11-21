@@ -1,0 +1,33 @@
+<case id="multiTest.case" name="multiTest" description="Test parent child with multiplicity">
+    <caseFileModel>
+        <caseFileItem id="cfi_multiTest.case_0" name="parent" multiplicity="ExactlyOne" definitionRef="testchild.cfid">
+            <children>
+                <caseFileItem id="cfi_multiTest.case_2" name="mchild" multiplicity="ZeroOrMore" definitionRef="mchild.cfid"/>
+                <caseFileItem id="cfi_multiTest.case_1" name="child" multiplicity="ZeroOrOne" definitionRef="child.cfid"/>
+            </children>
+        </caseFileItem>
+    </caseFileModel>
+    <casePlanModel id="cm_multiTest.case_0" name="multiTest">
+        <planItem id="cm_multiTest.case_203" name="htask" definitionRef="pid_cm_multiTest.case_203" entryCriteriaRefs="cm_multiTest.case_205"/>
+        <sentry id="cm_multiTest.case_205">
+            <caseFileItemOnPart sourceRef="cfi_multiTest.case_0">
+                <standardEvent>create</standardEvent>
+            </caseFileItemOnPart>
+        </sentry>
+        <humanTask id="pid_cm_multiTest.case_203" name="htask" isBlocking="true">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition"/>
+            </extensionElements>
+        </humanTask>
+    </casePlanModel>
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}</cafienne:start-case-model>
+    </extensionElements>
+</case>

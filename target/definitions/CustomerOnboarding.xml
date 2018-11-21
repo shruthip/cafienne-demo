@@ -1,0 +1,183 @@
+<definitions>
+    <case id="CustomerOnboarding.case" name="CustomerOnboarding">
+        <caseFileModel>
+            <caseFileItem definitionRef="customeronboarding.cfid" id="_GbM7X_19" multiplicity="ExactlyOne" name="CustomerOnboarding">
+                <children>
+                    <caseFileItem definitionRef="accountdetails.cfid" id="_GbM7X_21" multiplicity="ExactlyOne" name="AccountDetails">
+                        <children>
+                            <caseFileItem definitionRef="bankemail.cfid" id="_GbM7X_22" multiplicity="ExactlyOne" name="BankEmail" />
+                            <caseFileItem definitionRef="bankname.cfid" id="_GbM7X_23" multiplicity="ExactlyOne" name="BankName" />
+                            <caseFileItem definitionRef="contactname.cfid" id="_GbM7X_24" multiplicity="ExactlyOne" name="ContactName" />
+                            <caseFileItem definitionRef="referencenumber.cfid" id="_GbM7X_25" multiplicity="ExactlyOne" name="ReferenceNumber" />
+                        </children>
+                    </caseFileItem>
+                    <caseFileItem definitionRef="members.cfid" id="_GbM7X_26" multiplicity="ExactlyOne" name="Members">
+                        <children>
+                            <caseFileItem definitionRef="memberemail_1.cfid" id="_GbM7X_27" multiplicity="ZeroOrMore" name="MemberEmail" />
+                        </children>
+                    </caseFileItem>
+                </children>
+            </caseFileItem>
+        </caseFileModel>
+        <casePlanModel autoComplete="true" id="cm__GbM7X_0" name="CustomerOnboarding">
+            <planItem definitionRef="_GbM7X_0" id="pi__GbM7X_0" name="Account Creation" />
+            <planItem definitionRef="_GbM7X_5" entryCriteriaRefs="crit__GbM7X_0" id="pi__GbM7X_5" name="Send Emails" />
+            <sentry id="crit__GbM7X_0" name="Sentry_0">
+                <planItemOnPart id="_GbM7X_8" name="PlanItemOnPart_0" sourceRef="pi__GbM7X_0">
+                    <standardEvent>complete</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <humanTask id="ht__GbM7X_0" isBlocking="true" name="Review Customer Data">
+                <inputs bindingRef="_GbM7X_19" id="_GbM7X_29" name="CustomerOnboarding" />
+                <outputs bindingRef="_GbM7X_19" id="_GbM7X_11" name="CustomerOnboarding" />
+                <extensionElements mustUnderstand="false">
+                    <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" description="" name="CreateAccount" xmlns:cafienne="org.cafienne">
+                        <output id="_cBX7_Members" name="CustomerOnboarding" />
+                        <input id="_dwn5_CustomerOnboarding" name="CustomerOnboarding" />
+                        <task-model>{
+  "schema": {
+      "type": "object",
+      "properties": {"CustomerOnboarding": {"$ref": "#/definitions/CustomerOnboarding"}},
+      "definitions": {
+          "CustomerOnboarding": {
+              "type": "object",
+              "properties": {
+                  "AccountDetails": {"$ref": "#/definitions/AccountDetails"},
+                  "Members": {"$ref": "#/definitions/Members"}
+              }
+          },
+          "AccountDetails":{
+            "title": "Customer Onboarding / Account Details",
+            "type": "object",
+            "required": ["BankEmail", "BankName", "ContactName", "ReferenceNumber"],
+            "properties": {
+              "BankEmail": {
+                  "title": "Bank Email",
+                  "type": "string",
+                  "format": "email"
+              },
+              "BankName": {
+                  "title": "Bank Name",
+                  "type": "string"
+              },
+              "ContactName": {
+                  "title": "Contact Name",
+                  "type": "string"
+              },
+              "ReferenceNumber": {
+                  "title": "Reference Number",
+                  "type": "string"
+              }
+            }
+          },
+          "Members":{
+            "title": "Add Members",
+            "type": "object",
+            "required": ["MemberEmail"],
+            "properties": {
+              "MemberEmail": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "#/definitions/Email"}
+              }
+            }
+          },
+          
+          "Email": {
+              "title": "Email",
+              "type": "object",
+              "required": [
+                  "Email"
+              ],
+              "properties": {
+                  "Email": {
+                      "title": "Member Email",
+                      "type": "string"
+                  }
+              }
+          }
+      }
+  },
+  "uiSchema": {
+    "CustomerOnboarding": {
+      "ui:widget": "stepper",
+      "ui:order": ["AccountDetails", "Members"]
+    }
+  }
+}
+		</task-model>
+                        <parameterMapping id="_GbM7X_7" sourceRef="_cBX7_Members" targetRef="_GbM7X_11" />
+                    </cafienne:implementation>
+                </extensionElements>
+            </humanTask>
+            <processTask id="pt__GbM7X_0" isBlocking="true" name="Notify User" processRef="NotifyUsers.process">
+                <inputs bindingRef="_GbM7X_19" id="_GbM7X_6" name="CustomerOnboarding" />
+                <parameterMapping id="_GbM7X_13" sourceRef="_GbM7X_6" targetRef="_grLY_Members">
+                    <transformation id="_GbM7X_16" language="spel" name="Expression_0">
+                        <body>
+                        CustomerOnboarding.Members.MemberEmail[0].Email
+                    </body>
+                    </transformation>
+                </parameterMapping>
+            </processTask>
+            <stage autoComplete="true" id="_GbM7X_0" name="Account Creation">
+                <planItem definitionRef="ht__GbM7X_0" id="pi_ht__GbM7X_0" name="Review Customer Data" />
+            </stage>
+            <stage autoComplete="true" id="_GbM7X_5" name="Send Emails">
+                <planItem definitionRef="pt__GbM7X_0" id="pi_pt__GbM7X_0" name="Notify User" />
+            </stage>
+        </casePlanModel>
+    </case>
+    <process description="" id="NotifyUsers.process" name="NotifyUsers">
+        <input id="_grLY_Members" name="member" />
+        <extensionElements>
+            <cafienne:implementation class="org.cafienne.cmmn.instance.process.smtp.SMTPCallDefinition" xmlns:cafienne="org.cafienne">
+                <smtp-server>mailcatcher</smtp-server>
+                <smtp-port>1025</smtp-port>
+                <subject>Registration </subject>
+                <mail-body type="text/html">
+                
+    &lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt; You have been sucessfully registered to Vision Planner ${member} &lt;/body&gt;&lt;/html&gt;
+
+            </mail-body>
+                <from>travelrequest@email.org</from>
+                <reply-to>noreply@email.org</reply-to>
+                <to>
+                    <address name="${member}">${member}</address>
+                </to>
+            </cafienne:implementation>
+        </extensionElements>
+    </process>
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="customeronboarding.cfid" name="customeronboarding" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="accountdetails.cfid" name="accountdetails" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="bankemail.cfid" name="bankemail" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="bankname.cfid" name="bankname" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="contactname.cfid" name="contactname" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="referencenumber.cfid" name="referencenumber" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="members.cfid" name="members" />
+    <caseFileItemDefinition definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="memberemail_1.cfid" name="memberemail_1">
+        <property name="Email" type="http://www.omg.org/spec/CMMN/PropertyType/string" />
+    </caseFileItemDefinition>
+    <CMMNDI>
+        <CMMNDiagram>
+            <CMMNShape cmmnElementRef="cm__GbM7X_0" name="CustomerOnboarding">
+                <Bounds height="744" width="839" x="30" y="20" />
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi__GbM7X_0" name="Account Creation">
+                <Bounds height="140" width="420" x="270" y="140" />
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_ht__GbM7X_0" name="Review Customer Data">
+                <Bounds height="60" width="100" x="430" y="180" />
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi__GbM7X_5" name="Send Emails">
+                <Bounds height="210" width="470" x="260" y="410" />
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="pi_pt__GbM7X_0" name="Notify User">
+                <Bounds height="60" width="100" x="400" y="450" />
+            </CMMNShape>
+            <CMMNShape cmmnElementRef="crit__GbM7X_0" name="Sentry_0">
+                <Bounds height="20" width="12" x="484" y="400" />
+            </CMMNShape>
+        </CMMNDiagram>
+    </CMMNDI>
+</definitions>

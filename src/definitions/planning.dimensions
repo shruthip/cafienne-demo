@@ -1,0 +1,45 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_planning.case_planning_0" name="planning">
+            <Bounds x="10" y="10" width="895" height="781"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_4" name="T1">
+            <Bounds x="117" y="81" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_6" name="T2">
+            <Bounds x="117" y="197" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_8" name="T3">
+            <Bounds x="378" y="100" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_12">
+            <Bounds x="372" y="119" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_10" name="T4">
+            <Bounds x="375" y="215" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_16" name="Opnieuw T1">
+            <Bounds x="372" y="320" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_24" name="Stage">
+            <Bounds x="531" y="49" width="292" height="166"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_27" name="T5">
+            <Bounds x="620" y="110" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_26">
+            <Bounds x="525" y="119" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csQA1_13" name="Opnieuw T1">
+            <Bounds x="116" y="313" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="cm_csQA1_4" targetCMMNElementRef="cm_csQA1_12"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csQA1_12" targetCMMNElementRef="cm_csQA1_6"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csQA1_8" targetCMMNElementRef="cm_csQA1_26"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csQA1_6" targetCMMNElementRef="cm_csQA1_13"/>
+    </CMMNDiagram>
+    <validation>
+        <hiddennotices/>
+        <hiddenproblems/>
+    </validation>
+</CMMNDI>

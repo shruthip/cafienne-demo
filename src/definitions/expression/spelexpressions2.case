@@ -1,0 +1,109 @@
+<case description="" id="expression/spelexpressions2.case" name="SpelExpressions">
+    <caseFileModel>
+        <caseFileItem definitionRef="root.cfid" id="cfi_csdZm_0" multiplicity="ExactlyOne" name="Content" />
+        <caseFileItem definitionRef="root.cfid" id="cfi_csY4k_2" multiplicity="ZeroOrMore" name="Output" />
+        <caseFileItem definitionRef="root.cfid" id="cfi_csvwt_2" multiplicity="ExactlyOne" name="CaseID" />
+        <caseFileItem definitionRef="root.cfid" id="cfi_csvwt_4" multiplicity="ExactlyOne" name="TaskName" />
+    </caseFileModel>
+    <casePlanModel id="cm_SpelExpressions.case_SpelExpressions_0" name="SpelExpressions">
+        <planItem definitionRef="pid_cm_csd7G_38" entryCriteriaRefs="cm_csd7G_40 cm_csvwt_46" id="cm_csd7G_38" name="Milestone" />
+        <sentry id="cm_csd7G_40">
+            <ifPart contextRef="cfi_csdZm_0">
+                <condition language="spel">
+                    <body>
+                            Content != "basic"
+                        </body>
+                </condition>
+            </ifPart>
+            <caseFileItemOnPart sourceRef="cfi_csdZm_0">
+                <standardEvent>create</standardEvent>
+            </caseFileItemOnPart>
+        </sentry>
+        <sentry id="cm_csvwt_46">
+            <ifPart contextRef="cfi_csY4k_2">
+                <condition language="spel">
+                    <body>
+                            caseInstance.getPlanItems("HumanTask").size()&gt;2 || Output == "stop now"
+                        </body>
+                </condition>
+            </ifPart>
+            <planItemOnPart id="ref_id_cm_csdZm_17" sourceRef="cm_csdZm_17">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <milestone id="pid_cm_csd7G_38" name="Milestone" />
+        <planItem definitionRef="pid_cm_csNHO_55" exitCriteriaRefs="cm_csNHO_57" id="cm_csNHO_55" name="Stage" />
+        <sentry id="cm_csNHO_57">
+            <planItemOnPart id="ref_id_cm_csd7G_38" sourceRef="cm_csd7G_38">
+                <standardEvent>occur</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <stage autoComplete="true" id="pid_cm_csNHO_55" name="Stage">
+            <planItem definitionRef="pid_cm_csdZm_17" id="cm_csdZm_17" name="HumanTask">
+                <itemControl>
+                    <repetitionRule contextRef="cfi_csY4k_2" id="cm_csdZm_17_repetitionRule" name="cm_csdZm_17_repetitionRule">
+                        <condition language="spel">
+                            <body>
+                                    planItem.index &lt; 2
+                                </body>
+                        </condition>
+                    </repetitionRule>
+                </itemControl>
+            </planItem>
+        </stage>
+        <humanTask id="pid_cm_csdZm_17" isBlocking="true" name="HumanTask">
+            <inputs bindingRef="cfi_csdZm_0" id="inTP_cm_csTql_4_3" name="HumanTaskInput" />
+            <inputs id="inTP_cm_csTql_4_4" name="Assignee" />
+            <inputs id="inTP_cm_csTql_4_5" name="DueDate" />
+            <outputs bindingRef="cfi_csY4k_2" id="outTP_cm_csTql_4_3" name="TaskOutput" />
+            <outputs bindingRef="cfi_csvwt_4" id="outTP_cm_csTql_4_4" name="TaskName" />
+            <outputs bindingRef="cfi_csvwt_2" id="outTP_cm_csTql_4_5" name="CaseID" />
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="expression/spelexpressionstask.humantask" xmlns:cafienne="org.cafienne">
+                    <parameterMapping id="inPM_cm_csTql_4_0" sourceRef="inTP_cm_csTql_4_3" targetRef="_f5oP_HumanTaskInput" />
+                    <parameterMapping id="inPM_cm_csTql_4_1" sourceRef="inTP_cm_csTql_4_4" targetRef="_yDoJ_Assignee">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.currentUserContext.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="inPM_cm_csTql_4_2" sourceRef="inTP_cm_csTql_4_5" targetRef="_n8NU_DueDate">
+                        <transformation language="spel">
+                            <body>
+                                    T(java.time.Instant).now()
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="outPM_cm_csTql_4_0" sourceRef="_9oOB_TaskOutput" targetRef="outTP_cm_csTql_4_3" />
+                    <parameterMapping id="outPM_cm_csTql_4_1" sourceRef="_9oOB_TaskOutput" targetRef="outTP_cm_csTql_4_4">
+                        <transformation language="spel">
+                            <body>
+                                    task.planItem.name
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                    <parameterMapping id="outPM_cm_csTql_4_2" sourceRef="_9oOB_TaskOutput" targetRef="outTP_cm_csTql_4_5">
+                        <transformation language="spel">
+                            <body>
+                                    caseInstance.id
+                                </body>
+                        </transformation>
+                    </parameterMapping>
+                </cafienne:implementation>
+            </extensionElements>
+        </humanTask>
+    </casePlanModel>
+    <input bindingRef="cfi_csdZm_0" id="csdZm_inCPs_0" name="InputContent" />
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}
+            </cafienne:start-case-model>
+    </extensionElements>
+</case>

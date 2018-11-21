@@ -1,0 +1,34 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_SpelExpressions.case_SpelExpressions_0" name="SpelExpressions">
+            <Bounds x="33" y="17" width="670" height="472"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csNHO_55" name="Stage">
+            <Bounds x="159" y="113" width="226" height="171"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csNHO_57">
+            <Bounds x="379" y="189" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csd7G_38" name="Milestone">
+            <Bounds x="428" y="178" width="132" height="40"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csdZm_17" name="HumanTask">
+            <Bounds x="225" y="156" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csvwt_46">
+            <Bounds x="486" y="208" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csd7G_40">
+            <Bounds x="486" y="168" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="cm_csd7G_38" targetCMMNElementRef="cm_csNHO_57"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csdZm_17" targetCMMNElementRef="cm_csvwt_46">
+            <waypoint x="274" y="250"/>
+            <waypoint x="492" y="251"/>
+        </CMMNEdge>
+    </CMMNDiagram>
+    <validation>
+        <hiddennotices/>
+        <hiddenproblems/>
+    </validation>
+</CMMNDI>

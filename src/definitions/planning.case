@@ -1,0 +1,106 @@
+<case description="" id="planning.case" name="planning">
+    <caseFileModel>
+        <caseFileItem definitionRef="root.cfid" id="cfi_csQA1_0" multiplicity="ExactlyOne" name="CaseFileItem" />
+    </caseFileModel>
+    <casePlanModel id="cm_planning.case_planning_0" name="planning">
+        <planningTable id="pt_cm_undefined_3">
+            <applicabilityRule id="rule_csQA1_1" name="isValid">
+                <condition language="spel">
+                    <body>
+                            discretionaryItem.name=="Opnieuw T1" || (planItem.instance.planItems.?[name=='T2'].size() &gt; 0 &amp;&amp; planItem.instance.planItems.?[name=='T2'][0].state == T(org.cafienne.cmmn.instance.State).Active)
+                        </body>
+                </condition>
+            </applicabilityRule>
+            <discretionaryItem applicabilityRuleRefs="rule_csQA1_1" definitionRef="pid_cm_csQA1_10" id="cm_csQA1_10" name="T4">
+                <itemControl>
+                    <repetitionRule id="cm_csQA1_10_repetitionRule" name="cm_csQA1_10_repetitionRule">
+                        <condition language="spel">
+                            <body>
+                                    true
+                                </body>
+                        </condition>
+                    </repetitionRule>
+                </itemControl>
+            </discretionaryItem>
+            <discretionaryItem applicabilityRuleRefs="rule_csQA1_1" definitionRef="pid_cm_csQA1_16" id="cm_csQA1_16" name="Opnieuw T1" />
+        </planningTable>
+        <planItem definitionRef="pid_cm_csQA1_4" id="cm_csQA1_4" name="T1" />
+        <humanTask id="pid_cm_csQA1_4" isBlocking="true" name="T1">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csQA1_6" id="cm_csQA1_6" name="T2" />
+        <humanTask id="pid_cm_csQA1_6" isBlocking="true" name="T2">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+            <planningTable id="pt_cm_7">
+                <applicabilityRule id="rule_csQA1_0" name="isValid">
+                    <condition language="spel">
+                        <body>
+                                        true
+                                    </body>
+                    </condition>
+                </applicabilityRule>
+                <discretionaryItem applicabilityRuleRefs="rule_csQA1_0" definitionRef="pid_cm_csQA1_13" id="cm_csQA1_13" name="Opnieuw T1" />
+            </planningTable>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csQA1_8" entryCriteriaRefs="cm_csQA1_12" id="cm_csQA1_8" name="T3" />
+        <sentry id="cm_csQA1_12">
+            <planItemOnPart id="ref_id_cm_csQA1_4" sourceRef="cm_csQA1_4">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+            <planItemOnPart id="ref_id_cm_csQA1_6" sourceRef="cm_csQA1_6">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <humanTask id="pid_cm_csQA1_8" isBlocking="true" name="T3">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <planItem definitionRef="pid_cm_csQA1_24" entryCriteriaRefs="cm_csQA1_26" id="cm_csQA1_24" name="Stage" />
+        <sentry id="cm_csQA1_26">
+            <planItemOnPart id="ref_id_cm_csQA1_8" sourceRef="cm_csQA1_8">
+                <standardEvent>complete</standardEvent>
+            </planItemOnPart>
+        </sentry>
+        <stage autoComplete="false" id="pid_cm_csQA1_24" name="Stage">
+            <planningTable id="pt_cm_25">
+                <discretionaryItem definitionRef="pid_cm_csQA1_27" id="cm_csQA1_27" name="T5" />
+            </planningTable>
+        </stage>
+        <humanTask id="pid_cm_csQA1_27" isBlocking="true" name="T5">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_csQA1_10" isBlocking="true" name="T4">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_csQA1_13" isBlocking="true" name="Opnieuw T1">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+        <humanTask id="pid_cm_csQA1_16" isBlocking="true" name="Opnieuw T1">
+            <extensionElements mustUnderstand="false" xmlns:cafienne="org.cafienne">
+                <cafienne:implementation class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" xmlns:cafienne="org.cafienne" />
+            </extensionElements>
+        </humanTask>
+    </casePlanModel>
+    <extensionElements>
+        <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
+  "schema":{
+    "title": "",
+    "type": "object",
+    "properties":{
+    }
+  }
+}
+                                        </cafienne:start-case-model>
+    </extensionElements>
+</case>

@@ -1,0 +1,72 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_stageCompletion.case_stageCompletion_0" name="stageCompletion">
+            <Bounds x="12" y="7" width="953" height="846"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cseOt_62" name="Stage1">
+            <Bounds x="300" y="59" width="538" height="197"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cseOt_64" name="Task2">
+            <Bounds x="377" y="172" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cseOt_69">
+            <Bounds x="422" y="162" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cseOt_66" name="Task1">
+            <Bounds x="379" y="82" width="100" height="60"/>
+        </CMMNShape>
+        <textbox cmmnElementRef="cm_cseOt_68" name="Stage does not auto complete&#10;It has a required rule on Task1.&#10;Task2 listens to &quot;fail&quot; of Task1&#10;&#10;So it should complete if Task1 is completed,&#10;because Task2 always remains Available." parentid="cm_cseOt_62" caseid="stageCompletion.case.case_stageCompletion">
+            <Bounds x="528" y="111" width="222" height="99"/>
+        </textbox>
+        <CMMNShape cmmnElementRef="cm_csRJ5_72" name="Stage2">
+            <Bounds x="298" y="276" width="534" height="177"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csrtZ_73" name="Task3">
+            <Bounds x="381" y="291" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csrtZ_75" name="Task4">
+            <Bounds x="381" y="368" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cso85_100">
+            <Bounds x="292" y="373" width="12" height="20"/>
+        </CMMNShape>
+        <textbox cmmnElementRef="cm_csrtZ_77" name="Stage2 has a discretionary task.&#10;&#10;So completing Task3 should NOT complete the stage,&#10;because it is not autoComplete enabled" parentid="cm_csRJ5_72" caseid="stageCompletion.case.case_stageCompletion">
+            <Bounds x="618" y="343" width="100" height="60"/>
+        </textbox>
+        <CMMNShape cmmnElementRef="cm_cso85_99" name="TriggerStage2">
+            <Bounds x="110" y="369" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cso85_101" name="Stage3">
+            <Bounds x="297" y="478" width="535" height="176"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cso85_103" name="Task5">
+            <Bounds x="376" y="497" width="100" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cso85_105" name="Task6">
+            <Bounds x="376" y="574" width="100" height="60"/>
+        </CMMNShape>
+        <textbox cmmnElementRef="cm_cso85_107" name="Stage3 is similar to Stage2, but autoComplete is enabled.&#10;&#10;Hence completing Task5 should complete the stage,&#10;even though there are discretionary items" parentid="cm_cso85_101" caseid="stageCompletion.case.case_stageCompletion">
+            <Bounds x="622" y="528" width="100" height="60"/>
+        </textbox>
+        <CMMNShape cmmnElementRef="cm_csXD7_109">
+            <Bounds x="291" y="549" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csXD7_108" name="TriggerStage3">
+            <Bounds x="109" y="542" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csRJ5_71">
+            <Bounds x="294" y="137" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csRJ5_70" name="TriggerStage1">
+            <Bounds x="111" y="128" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="cm_cseOt_66" targetCMMNElementRef="cm_cseOt_69"/>
+        <CMMNEdge sourceCMMNElementRef="cm_cso85_99" targetCMMNElementRef="cm_cso85_100"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csXD7_108" targetCMMNElementRef="cm_csXD7_109"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csRJ5_70" targetCMMNElementRef="cm_csRJ5_71"/>
+    </CMMNDiagram>
+    <validation>
+        <hiddennotices/>
+        <hiddenproblems/>
+    </validation>
+</CMMNDI>

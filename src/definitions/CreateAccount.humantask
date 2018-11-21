@@ -1,0 +1,78 @@
+<humantask>
+    <cafienne:implementation xmlns:cafienne="org.cafienne" name="CreateAccount" description="" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
+        <output id="_cBX7_Members" name="CustomerOnboarding"/>
+        <input id="_dwn5_CustomerOnboarding" name="CustomerOnboarding"/>
+        <task-model>{
+  "schema": {
+      "type": "object",
+      "properties": {"CustomerOnboarding": {"$ref": "#/definitions/CustomerOnboarding"}},
+      "definitions": {
+          "CustomerOnboarding": {
+              "type": "object",
+              "properties": {
+                  "AccountDetails": {"$ref": "#/definitions/AccountDetails"},
+                  "Members": {"$ref": "#/definitions/Members"}
+              }
+          },
+          "AccountDetails":{
+            "title": "Customer Onboarding / Account Details",
+            "type": "object",
+            "required": ["BankEmail", "BankName", "ContactName", "ReferenceNumber"],
+            "properties": {
+              "BankEmail": {
+                  "title": "Bank Email",
+                  "type": "string",
+                  "format": "email"
+              },
+              "BankName": {
+                  "title": "Bank Name",
+                  "type": "string"
+              },
+              "ContactName": {
+                  "title": "Contact Name",
+                  "type": "string"
+              },
+              "ReferenceNumber": {
+                  "title": "Reference Number",
+                  "type": "string"
+              }
+            }
+          },
+          "Members":{
+            "title": "Add Members",
+            "type": "object",
+            "required": ["MemberEmail"],
+            "properties": {
+              "MemberEmail": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"$ref": "#/definitions/Email"}
+              }
+            }
+          },
+          
+          "Email": {
+              "title": "Email",
+              "type": "object",
+              "required": [
+                  "Email"
+              ],
+              "properties": {
+                  "Email": {
+                      "title": "Member Email",
+                      "type": "string"
+                  }
+              }
+          }
+      }
+  },
+  "uiSchema": {
+    "CustomerOnboarding": {
+      "ui:widget": "stepper",
+      "ui:order": ["AccountDetails", "Members"]
+    }
+  }
+}
+		</task-model>
+    </cafienne:implementation>
+</humantask>
